@@ -77,11 +77,11 @@ public class UserDao {
 
     @Transactional
     public User getUserByUsername(String username) {
-        Query<User> query = sessionFactory.getCurrentSession().createQuery("from User where username = :username", User.class);
+        Query query = sessionFactory.getCurrentSession().createQuery("from User where username = :username");
         query.setParameter("username", username);
 
         try {
-            return query.getSingleResult();
+            return (User) query.getSingleResult();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
