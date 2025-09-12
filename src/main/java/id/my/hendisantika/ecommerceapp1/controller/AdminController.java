@@ -3,6 +3,9 @@ package id.my.hendisantika.ecommerceapp1.controller;
 import id.my.hendisantika.ecommerceapp1.entity.Category;
 import id.my.hendisantika.ecommerceapp1.entity.Product;
 import id.my.hendisantika.ecommerceapp1.entity.User;
+import id.my.hendisantika.ecommerceapp1.service.CategoryService;
+import id.my.hendisantika.ecommerceapp1.service.ProductService;
+import id.my.hendisantika.ecommerceapp1.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,9 +37,9 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController {
 
-    private final userService userService;
-    private final categoryService categoryService;
-    private final productService productService;
+    private final UserService userService;
+    private final CategoryService categoryService;
+    private final ProductService productService;
 
 
     @GetMapping("/index")

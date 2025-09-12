@@ -1,6 +1,7 @@
 package id.my.hendisantika.ecommerceapp1.service;
 
 import id.my.hendisantika.ecommerceapp1.entity.Cart;
+import id.my.hendisantika.ecommerceapp1.repository.CartDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ import java.util.List;
 @Service
 public class CartService {
     @Autowired
-    private cartDao cartDao;
+    private CartDao cartDao;
 
     public Cart addCart(Cart cart) {
         return cartDao.addCart(cart);
