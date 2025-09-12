@@ -3,6 +3,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 logs
+mysql_data
 
 ### STS ###
 .apt_generated

@@ -1,11 +1,12 @@
 package id.my.hendisantika.ecommerceapp1.service;
 
 import id.my.hendisantika.ecommerceapp1.entity.Product;
-import id.my.hendisantika.ecommerceapp1.repository.ProductDao;
-import org.springframework.beans.factory.annotation.Autowired;
+import id.my.hendisantika.ecommerceapp1.repository.ProductRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,28 +20,34 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Service
+@RequiredArgsConstructor
 public class ProductService {
-    @Autowired
-    private ProductDao productDao;
+    private final ProductRepository productRepository;
 
     public List<Product> getProducts() {
-        return this.productDao.getProducts();
+        return this.productRepository.findAll();
     }
 
     public Product addProduct(Product product) {
-        return this.productDao.addProduct(product);
+        return this.productRepository.save(product);
     }
 
     public Product getProduct(int id) {
-        return this.productDao.getProduct(id);
+        Optional<Product> productOpt = this.productRepository.findById(id);
+        return productOpt.orElse(null);
     }
 
     public Product updateProduct(int id, Product product) {
         product.setId(id);
-        return this.productDao.updateProduct(product);
+        return this.productRepository.save(product);
     }
 
     public boolean deleteProduct(int id) {
-        return this.productDao.deletProduct(id);
+        try {
+            this.productRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

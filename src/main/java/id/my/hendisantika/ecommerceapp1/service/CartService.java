@@ -1,11 +1,12 @@
 package id.my.hendisantika.ecommerceapp1.service;
 
 import id.my.hendisantika.ecommerceapp1.entity.Cart;
-import id.my.hendisantika.ecommerceapp1.repository.CartDao;
-import org.springframework.beans.factory.annotation.Autowired;
+import id.my.hendisantika.ecommerceapp1.repository.CartRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,31 +20,32 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Service
+@RequiredArgsConstructor
 public class CartService {
-    @Autowired
-    private CartDao cartDao;
+    private final CartRepository cartRepository;
 
     public Cart addCart(Cart cart) {
-        return cartDao.addCart(cart);
+        return cartRepository.save(cart);
     }
 
-    //    public Cart getCart(int id)
-//    {
-//        return cartDao.getCart(id);
-//    }
+    public Cart getCart(int id) {
+        Optional<Cart> cartOpt = cartRepository.findById(id);
+        return cartOpt.orElse(null);
+    }
+
     public List<Cart> getCarts() {
-        return this.cartDao.getCarts();
+        return this.cartRepository.findAll();
     }
 
     public void updateCart(Cart cart) {
-        cartDao.updateCart(cart);
+        cartRepository.save(cart);
     }
 
     public void deleteCart(Cart cart) {
-        cartDao.deleteCart(cart);
+        cartRepository.delete(cart);
     }
 
-//    pubiic List<Cart> getCartByUserId(int customer_id){
-//        return cartDao.getCartsByCustomerID(customer_id);
-//    }
+    public List<Cart> getCartByUserId(int customerId) {
+        return cartRepository.findByCustomerId(customerId);
+    }
 }
