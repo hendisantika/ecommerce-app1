@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        h1 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+<h1>Test Page</h1>
+
+<h1>Author name is <span th:text="${author}">Unknown Author</span></h1>
+
+<h1>ID is <span th:text="${id}">0</span></h1>
+
+<div th:each="friend : ${friends}">
+    <h1 th:text="${friend}">Friend Name</h1>
+</div>
+
+</body>
+</html>
