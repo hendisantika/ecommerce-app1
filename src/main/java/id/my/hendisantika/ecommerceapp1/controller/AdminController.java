@@ -63,7 +63,7 @@ public class AdminController {
         return mv;
     }
 
-    @GetMapping(value = {"/", "Dashboard"})
+    @GetMapping(value = {"/", "dashboard"})
     public ModelAndView adminHome(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         ModelAndView mv = new ModelAndView("adminHome");
