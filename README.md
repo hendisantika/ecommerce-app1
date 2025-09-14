@@ -354,6 +354,34 @@ For support, please open an issue on GitHub or contact the development team.
 
 ### Image Screenshots
 
+User Login Page
+
+![User Login Page](img/user-login.png "User Login Page")
+
+Admin Login Page
+
+![Admin Login Page](img/admin-login.png "Admin Login Page")
+
 Product Catalog
 
 ![Product Catalog](img/products.png "Product Catalog")
+
+Category Management
+
+![Category Management](img/Categories.png "Category Management")
+
+Add Category
+
+![Add Category](img/add-category.png "Add Category")
+
+Update Category
+
+![Update Category](img/update-category.png "Update Category")
+
+Dashboard
+
+![Dashboard](img/dashboard.png "Dashboard")
+
+Customer Profile
+
+![Customer Profile](img/customer.png "Customer Profile")
