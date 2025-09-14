@@ -316,24 +316,31 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **v1.0.0** - Initial release with basic e-commerce functionality
 - **v1.1.0** - Added Spring Boot 3 support and Flyway migrations
 - **v1.2.0** - Enhanced security with BCrypt and role-based access
+- **v1.2.1** - Fixed 403 Forbidden error on home page access
 
 ## 🆘 Troubleshooting
 
 ### Common Issues
 
-1. **Database Connection Failed**
+1. **403 Forbidden Error**
+    - **Issue**: Getting 403 error when accessing home page
+    - **Cause**: Spring Security requires authentication for all pages except login/register
+    - **Solution**: Home page (`/`) is now publicly accessible
+    - **Fixed in**: SecurityConfiguration.java line 97
+
+2. **Database Connection Failed**
    ```bash
    # Start Docker Compose
    docker-compose up -d
    ```
 
-2. **Migration Errors**
+3. **Migration Errors**
    ```bash
    # Repair migration
    ./mvnw flyway:repair
    ```
 
-3. **Login Issues**
+4. **Login Issues**
     - Default password: `admin123`
     - Check user roles in database
 

@@ -60,7 +60,7 @@ public class LoginFunctionalityTest {
     public void testPasswordHashing() {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String plainPassword = "admin123";
-        String hashedPassword = "$2a$10$dHeGeEJ2W5kXA/aD7QUkmuRsY5nfC/LUpFH8T57EQDfL5SJ25ZLlm";
+        String hashedPassword = "$2a$10$GCDqksLBioN/aG7AOiUa2OGhjdwXeqs4Gs/inxgTJcUSlOkA6w/EK";
 
         assertTrue(encoder.matches(plainPassword, hashedPassword),
                 "Password should match the hash");

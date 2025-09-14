@@ -108,7 +108,7 @@
                 <form action="categories/update" method="get">
                     <!-- Button trigger modal -->
                     <button class="btn btn-warning" data-target="#exampleModalCenter2" data-toggle="modal"
-                            th:onclick="'document.getElementById(\'categoryname\').value = \'' + ${category.name} + '\'; document.getElementById(\'categoryid\').value = \'' + ${category.id} + '\';'"
+                            th:onclick="|document.getElementById('categoryname').value = '${category.name}'; document.getElementById('categoryid').value = '${category.id}';|"
                             type="button">
                         Update
                     </button>

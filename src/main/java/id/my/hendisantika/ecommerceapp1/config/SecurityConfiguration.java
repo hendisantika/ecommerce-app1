@@ -94,7 +94,7 @@ public class SecurityConfiguration {
         @Bean
         SecurityFilterChain userFilterChain(HttpSecurity http) throws Exception {
             http.authorizeHttpRequests(requests -> requests
-                            .requestMatchers("/login", "/register", "/newuserregister", "/test", "/test2").permitAll()
+                            .requestMatchers("/", "/login", "/register", "/newuserregister", "/test", "/test2", "/css/**", "/js/**", "/images/**").permitAll()
                             .requestMatchers("/**").hasRole("USER"))
                     .formLogin(login -> login
                             .loginPage("/login")
