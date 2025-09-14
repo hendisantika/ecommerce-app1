@@ -95,8 +95,7 @@ public class UserController {
 
         if (!exists) {
             log.info(user.getEmail());
-//            user.setRole("ROLE_NORMAL");
-            user.setRole("ADMIN");
+            user.setRole("ROLE_NORMAL");
             this.userService.addUser(user);
 
             log.info("New user created: {}", user.getUsername());

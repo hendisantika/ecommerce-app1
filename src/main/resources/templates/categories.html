@@ -32,9 +32,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
-                <li class="nav-item active"><a class="nav-link" href="Dashboard">Home
+                <li class="nav-item active"><a class="nav-link" href="/admin/Dashboard">Home
                     Page</a></li>
-                <li class="nav-item active"><a class="nav-link" href="logout">Logout</a>
+                <li class="nav-item active"><a class="nav-link" href="/admin/logout">Logout</a>
                 </li>
 
             </ul>
@@ -105,60 +105,57 @@
             </td>
 
             <td>
-                <form action="categories/update" method="get">
-                    <!-- Button trigger modal -->
-                    <button class="btn btn-warning" data-target="#exampleModalCenter2" data-toggle="modal"
-                            th:onclick="|document.getElementById('categoryname').value = '${category.name}'; document.getElementById('categoryid').value = '${category.id}';|"
-                            type="button">
-                        Update
-                    </button>
-
-                    <!-- Modal -->
-                    <div aria-hidden="true" aria-labelledby="exampleModalCenterTitle" class="modal fade"
-                         id="exampleModalCenter2" role="dialog"
-                         tabindex="-1">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle2">Update
-                                        Category Details</h5>
-                                    <button aria-label="Close" class="close" data-dismiss="modal"
-                                            type="button">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body text-center">
-                                    <div class="form-group">
-                                        <input class="form-control" id="categoryid"
-                                               name="categoryid" readonly="readonly" type="number" value="0">
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="form-control" id="categoryname" name="categoryname"
-                                               type="text"
-                                               value="categoryname">
-                                    </div>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-secondary" data-dismiss="modal"
-                                            type="button">Close
-                                    </button>
-                                    <button class="btn btn-primary" type="submit">Update
-                                        changes
-                                    </button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </form>
+                <!-- Button trigger modal -->
+                <button class="btn btn-warning update-btn" data-target="#updateModal"
+                        data-toggle="modal"
+                        th:attr="data-category-id=${category.id},data-category-name=${category.name}"
+                        type="button">
+                    Update
+                </button>
             </td>
 
         </tr>
         </tbody>
     </table>
+
+    <!-- Update Category Modal (moved outside loop to avoid duplicate IDs) -->
+    <div aria-hidden="true" aria-labelledby="updateModalTitle" class="modal fade"
+         id="updateModal" role="dialog"
+         tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form action="categories/update" method="get">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="updateModalTitle">Update
+                            Category Details</h5>
+                        <button aria-label="Close" class="close" data-dismiss="modal"
+                                type="button">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <div class="form-group">
+                            <input class="form-control" id="updateCategoryId"
+                                   name="categoryid" readonly="readonly" type="number" value="0">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" id="updateCategoryName" name="categoryname"
+                                   type="text"
+                                   value="">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-dismiss="modal"
+                                type="button">Close
+                        </button>
+                        <button class="btn btn-primary" type="submit">Update
+                            changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 </div>
 
@@ -173,5 +170,21 @@
         crossorigin="anonymous"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<script>
+    // Handle update button clicks
+    document.addEventListener('DOMContentLoaded', function () {
+        const updateButtons = document.querySelectorAll('.update-btn');
+        updateButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                const categoryId = this.getAttribute('data-category-id');
+                const categoryName = this.getAttribute('data-category-name');
+
+                document.getElementById('updateCategoryId').value = categoryId;
+                document.getElementById('updateCategoryName').value = categoryName;
+            });
+        });
+    });
+</script>
 </body>
 </html>
