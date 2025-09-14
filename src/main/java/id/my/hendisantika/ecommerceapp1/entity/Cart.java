@@ -21,8 +21,8 @@ import lombok.NoArgsConstructor;
  * Time: 05.28
  * To change this template use File | Settings | File Templates.
  */
-@Entity(name = "CART")
 @Data
+@Entity(name = "CART")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Cart {

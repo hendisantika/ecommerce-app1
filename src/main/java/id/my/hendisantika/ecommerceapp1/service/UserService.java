@@ -4,6 +4,7 @@ import id.my.hendisantika.ecommerceapp1.entity.User;
 import id.my.hendisantika.ecommerceapp1.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +25,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+    private static final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public List<User> getUsers() {
         return this.userRepository.findAll();
@@ -31,6 +33,10 @@ public class UserService {
 
     public User addUser(User user) {
         try {
+            // Hash the password before saving
+            if (user.getPassword() != null && !user.getPassword().startsWith("$2a$")) {
+                user.setPassword(passwordEncoder.encode(user.getPassword()));
+            }
             return this.userRepository.save(user);
         } catch (DataIntegrityViolationException e) {
             // handle unique constraint violation, e.g., by throwing a custom exception
@@ -39,8 +45,11 @@ public class UserService {
     }
 
     public User checkLogin(String username, String password) {
-        Optional<User> userOpt = this.userRepository.findByUsernameAndPassword(username, password);
-        return userOpt.orElse(new User());
+        Optional<User> userOpt = this.userRepository.findByUsername(username);
+        if (userOpt.isPresent() && passwordEncoder.matches(password, userOpt.get().getPassword())) {
+            return userOpt.get();
+        }
+        return new User();
     }
 
     public boolean checkUserExists(String username) {

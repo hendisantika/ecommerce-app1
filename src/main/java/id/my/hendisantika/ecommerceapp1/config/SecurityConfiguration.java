@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -43,8 +44,7 @@ public class SecurityConfiguration {
 
             return org.springframework.security.core.userdetails.User
                     .withUsername(username)
-                    .passwordEncoder(input -> passwordEncoder().encode(input))
-                    .password(user.getPassword())
+                    .password(user.getPassword())  // Password is already hashed in database
                     .roles(role)
                     .build();
         };
@@ -82,7 +82,7 @@ public class SecurityConfiguration {
                     .exceptionHandling(exception -> exception
                             .accessDeniedPage("/403")  // Custom 403 page
                     );
-            http.csrf(csrf -> csrf.disable());
+            http.csrf(AbstractHttpConfigurer::disable);
             return http.build();
         }
     }
@@ -113,7 +113,7 @@ public class SecurityConfiguration {
                             .accessDeniedPage("/403")  // Custom 403 page
                     );
 
-            http.csrf(csrf -> csrf.disable());
+            http.csrf(AbstractHttpConfigurer::disable);
             return http.build();
         }
     }

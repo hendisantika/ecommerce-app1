@@ -6,6 +6,7 @@ import id.my.hendisantika.ecommerceapp1.service.ProductService;
 import id.my.hendisantika.ecommerceapp1.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +30,7 @@ import java.util.List;
  * Time: 05.45
  * To change this template use File | Settings | File Templates.
  */
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class UserController {
@@ -47,7 +49,7 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public ModelAndView userlogin(@RequestParam(required = false) String error) {
+    public ModelAndView userLogin(@RequestParam(required = false) String error) {
         ModelAndView mv = new ModelAndView("userLogin");
         if ("true".equals(error)) {
             mv.addObject("msg", "Please enter correct email and password");
@@ -71,7 +73,7 @@ public class UserController {
     }
 
     @GetMapping("/user/products")
-    public ModelAndView getproduct() {
+    public ModelAndView getProduct() {
 
         ModelAndView mView = new ModelAndView("uproduct");
 
@@ -87,20 +89,20 @@ public class UserController {
     }
 
     @PostMapping(value = "newuserregister")
-    public ModelAndView newUseRegister(@ModelAttribute User user) {
+    public ModelAndView newUserRegister(@ModelAttribute User user) {
         // Check if username already exists in database
         boolean exists = this.userService.checkUserExists(user.getUsername());
 
         if (!exists) {
-            System.out.println(user.getEmail());
+            log.info(user.getEmail());
             user.setRole("ROLE_NORMAL");
             this.userService.addUser(user);
 
-            System.out.println("New user created: " + user.getUsername());
+            log.info("New user created: {}", user.getUsername());
             ModelAndView mView = new ModelAndView("userLogin");
             return mView;
         } else {
-            System.out.println("New user not created - username taken: " + user.getUsername());
+            log.info("New user not created - username taken: {}", user.getUsername());
             ModelAndView mView = new ModelAndView("register");
             mView.addObject("msg", user.getUsername() + " is taken. Please choose a different username.");
             return mView;
