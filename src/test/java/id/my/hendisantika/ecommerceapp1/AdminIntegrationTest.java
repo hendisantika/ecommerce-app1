@@ -1,21 +1,18 @@
 package id.my.hendisantika.ecommerceapp1;
 
+import id.my.hendisantika.ecommerceapp1.config.AbstractTestcontainersTest;
 import id.my.hendisantika.ecommerceapp1.controller.AdminController;
 import id.my.hendisantika.ecommerceapp1.service.CategoryService;
 import id.my.hendisantika.ecommerceapp1.service.ProductService;
 import id.my.hendisantika.ecommerceapp1.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@SpringBootTest
-@ActiveProfiles("test")
-public class AdminIntegrationTest {
+public class AdminIntegrationTest extends AbstractTestcontainersTest {
 
     @Autowired
     private AdminController adminController;

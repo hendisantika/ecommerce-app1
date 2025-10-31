@@ -1,10 +1,9 @@
 package id.my.hendisantika.ecommerceapp1;
 
+import id.my.hendisantika.ecommerceapp1.config.AbstractTestcontainersTest;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class EcommerceApp1ApplicationTests {
+class EcommerceApp1ApplicationTests extends AbstractTestcontainersTest {
 
     @Test
     void contextLoads() {

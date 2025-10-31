@@ -1,20 +1,17 @@
 package id.my.hendisantika.ecommerceapp1;
 
+import id.my.hendisantika.ecommerceapp1.config.AbstractTestcontainersTest;
 import id.my.hendisantika.ecommerceapp1.entity.User;
 import id.my.hendisantika.ecommerceapp1.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@SpringBootTest
-@ActiveProfiles("test")
-public class LoginFunctionalityTest {
+public class LoginFunctionalityTest extends AbstractTestcontainersTest {
 
     @Autowired
     private UserService userService;
