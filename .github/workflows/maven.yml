@@ -124,7 +124,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - run: docker build -t movie-trailer:$IMAGE_TAG -f Dockerfile-github .
+      - run: docker build -t movie-trailer:$IMAGE_TAG -f Dockerfile .
 
       - name: Push to ECR
         env:
