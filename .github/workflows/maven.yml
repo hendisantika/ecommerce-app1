@@ -136,7 +136,7 @@ jobs:
         with:
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.AWS_ACCESS_SECRET_KEY }}
-          region: ${{ secrets.AWS_REGION }}
+          region: ${{ vars.AWS_REGION }}
           local-image: ecommerce:$IMAGE_TAG
           image: ecommerce:$IMAGE_TAG, ecommerce:github-latest
 
