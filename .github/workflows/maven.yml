@@ -79,7 +79,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: Dockerfile-github
+          file: Dockerfile
           push: true
           labels: ${{ steps.meta.outputs.labels }}
           tags: hendisantika/ecommerce:${{ github.run_number }}
