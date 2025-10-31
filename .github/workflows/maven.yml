@@ -138,7 +138,7 @@ jobs:
           secret-access-key: ${{ secrets.AWS_ACCESS_SECRET_KEY }}
           region: ${{ vars.AWS_REGION }}
           local-image: ecommerce:$IMAGE_TAG
-          image: ecommerce:$IMAGE_TAG, ecommerce:github-latest
+          image: ecommerce:$IMAGE_TAG
 
   deploy:
     needs: push-to-ecr
