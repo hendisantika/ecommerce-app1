@@ -124,7 +124,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - run: docker build -t movie-trailer:$IMAGE_TAG -f Dockerfile .
+      - run: docker build -t ecommerce:$IMAGE_TAG -f Dockerfile .
 
       - name: Push to ECR
         env:
@@ -137,8 +137,8 @@ jobs:
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.AWS_ACCESS_SECRET_KEY }}
           region: ${{ secrets.AWS_REGION }}
-          local-image: movie-trailer:$IMAGE_TAG
-          image: movie-trailer:$IMAGE_TAG, movie-trailer:github-latest
+          local-image: ecommerce:$IMAGE_TAG
+          image: ecommerce:$IMAGE_TAG, ecommerce:github-latest
 
   deploy:
     needs: push-to-ecr
@@ -207,7 +207,7 @@ jobs:
           echo IMAGE_TAG=$IMAGE_TAG >> .env
           echo APP_ENV=github >> .env
           echo SPRING_ACTIVE_PROFILE=dev >> .env
-          echo APP_NAME=movie-trailer >> .env
+          echo APP_NAME=ecommerce >> .env
           echo APP_PORT=$APP_PORT >> .env
           echo SPRING_DATASOURCE_URL=$SPRING_DATASOURCE_URL >> .env
           echo SPRING_DATASOURCE_USERNAME=$SPRING_DATASOURCE_USERNAME >> .env
