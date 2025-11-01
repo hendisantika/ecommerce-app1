@@ -190,7 +190,7 @@ jobs:
           ECR_REPOSITORY: ecommerce
           IMAGE_TAG: ${{ github.run_number }}
           CONTAINER_NAME: ecommerce
-          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_REGION: ${{ vars.AWS_REGION }}
           AWS_ECR_REGISTRY: ${{ vars.AWS_ECR_REGISTRY }}
           AWS_ECR_REPOSITORY: ${{ vars.AWS_ECR_REPO }}
           APP_PORT: ${{ vars.APP_PORT }}
