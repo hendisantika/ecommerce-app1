@@ -213,6 +213,16 @@ jobs:
           echo SPRING_DATASOURCE_USERNAME=$SPRING_DATASOURCE_USERNAME >> .env
           echo SPRING_DATASOURCE_PASSWORD=$SPRING_DATASOURCE_PASSWORD >> .env
 
+      - name: Verify SSH key fingerprint
+        env:
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+          SERVER_PORT: ${{ secrets.SERVER_PORT }}
+          SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
+        run: |
+          ssh-keygen -lf ~/.ssh/private.key || echo "SERVER_SSH_KEY is not a valid private key"
+          ssh -v -o BatchMode=yes -o StrictHostKeyChecking=no -i ~/.ssh/private.key -p "$SERVER_PORT" "$SERVER_USERNAME@$SERVER_HOST" true 2>&1 \
+            | grep -E "Connecting to|Offering public key|Authentications that can continue|Server accepts key|Authenticated to|Permission denied" || true
+
       - name: Use SSH key
         uses: appleboy/scp-action@v1.0.0
         with:
