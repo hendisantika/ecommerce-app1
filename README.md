@@ -1,6 +1,6 @@
 # 🛒 E-commerce Application
 
-A modern Spring Boot 3 e-commerce application with secure authentication, product management, and shopping cart
+A modern Spring Boot 4 e-commerce application with secure authentication, product management, and shopping cart
 functionality.
 
 ## 🚀 Features
@@ -12,7 +12,7 @@ functionality.
 - **Role-Based Access Control**:
     - `ADMIN` role: Full administrative access
     - `USER` role: Customer shopping functionality
-- **Spring Security Integration**: Latest Spring Boot 3 security standards
+- **Spring Security Integration**: Latest Spring Boot 4 / Spring Security 7 standards
 
 ### 🛍️ E-commerce Functionality
 
@@ -38,14 +38,14 @@ functionality.
 
 | Technology          | Version | Purpose                        |
 |---------------------|---------|--------------------------------|
-| **Java**            | 21      | Programming Language           |
-| **Spring Boot**     | 3.5.5   | Application Framework          |
-| **Spring Security** | 6.x     | Authentication & Authorization |
-| **Spring Data JPA** | 3.x     | Data Persistence               |
-| **Hibernate**       | 6.6.26  | ORM Framework                  |
-| **Thymeleaf**       | 3.x     | Template Engine                |
-| **MySQL**           | 9.4     | Database                       |
-| **Flyway**          | 11.7.2  | Database Migration             |
+| **Java**            | 25      | Programming Language           |
+| **Spring Boot**     | 4.1.1   | Application Framework          |
+| **Spring Security** | 7.1.1   | Authentication & Authorization |
+| **Spring Data JPA** | 4.x     | Data Persistence               |
+| **Hibernate**       | 7.4.5   | ORM Framework                  |
+| **Thymeleaf**       | 3.1.5   | Template Engine                |
+| **MySQL**           | 9.5     | Database                       |
+| **Flyway**          | 12.4.0  | Database Migration             |
 | **Docker Compose**  | -       | Database Containerization      |
 | **Maven**           | 3.x     | Build Tool                     |
 | **Lombok**          | -       | Code Generation                |
@@ -96,7 +96,7 @@ src/
 
 ### Prerequisites
 
-- Java 21+
+- Java 25+
 - Maven 3.6+
 - Docker & Docker Compose
 
@@ -269,7 +269,7 @@ spring.docker.compose.lifecycle-management=start_and_stop
 
 ### Code Style
 
-- **Java 21** features and syntax
+- **Java 25** features and syntax
 - **Lombok** for reducing boilerplate
 - **Spring Boot** best practices
 - **RESTful** API design
@@ -317,6 +317,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **v1.1.0** - Added Spring Boot 3 support and Flyway migrations
 - **v1.2.0** - Enhanced security with BCrypt and role-based access
 - **v1.2.1** - Fixed 403 Forbidden error on home page access
+- **v1.3.0** - Upgraded to Java 25 and Spring Boot 4 (Hibernate 7 `MySQLDialect`, `spring-boot-starter-flyway`)
 
 ## 🆘 Troubleshooting
 
@@ -350,7 +351,7 @@ For support, please open an issue on GitHub or contact the development team.
 
 ---
 
-**Built with ❤️ using Spring Boot 3 and modern Java**
+**Built with ❤️ using Spring Boot 4 and Java 25**
 
 ### Image Screenshots
 
